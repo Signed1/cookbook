@@ -4,8 +4,6 @@
 	<title>
 		New Utensil
 	</title>
-
-
 </head>
 
 <body>
