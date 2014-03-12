@@ -6,12 +6,9 @@ $pass = $_POST['pass'];
 
 <html>
 <head>
-
 	<title>
 		Web Engineering!
 	</title>
-
-
 </head>
 
 <body>

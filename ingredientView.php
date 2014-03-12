@@ -6,22 +6,18 @@
 	</title>
 
 <?php
-$title = $_POST['title'];
-$desc = $_POST['description'];
-$ingredients = $_POST['ingredients'];
-$prepTime = $_POST['prepTime'];
-$difficulty = $_POST['difficulty'];
+$amount = $_POST['amount'];
+$unit = $_POST['unit'];
+$name = $_POST['name'];
 ?>
 </head>
 
 <body>
-<h1>Recipe View</h1>
+<h1>Ingredient View</h1>
 	<table>
-			<tr><td>Title: <br /> <?= $title; ?> </td><td><img src="" name="img" width="150" height="150"</td></tr>
-			<tr><td>Description: </td> <?= $desc; ?></td></tr>
-			<tr><td>Ingredients: </td><td><?= $ingredients; ?></td></tr>
-			<tr><td>Prep Time: </td><td><?= $prepTime; ?></td></tr>
-			<tr><td>Difficulty: </td><td><?= $difficulty; ?></td></tr>
+			<tr><td>Name: <br /> <?= $name; ?> </td></tr>
+			<tr><td>Unit: </td> <?= $unit; ?></td></tr>
+			<tr><td>Amount: </td><td><?= $amount; ?></td></tr>
 	</table>
 </body>
 </html>

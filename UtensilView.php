@@ -9,7 +9,7 @@
 <body>
 
 <?php
-	echo "lala $_POST['utensilName']";
+	echo "Utensilname: $_POST['utensilName']";
 ?>
 
 <a href="newUtensil.php">Zur&uuml;ck</a>
