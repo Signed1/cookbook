@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.2.2
+-- version 4.1.6
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 05. Mrz 2014 um 11:47
--- Server Version: 5.5.27
--- PHP-Version: 5.4.7
+-- Erstellungszeit: 12. Mrz 2014 um 15:25
+-- Server Version: 5.6.16
+-- PHP-Version: 5.5.9
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -23,26 +23,18 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `incredient`
+-- Tabellenstruktur für Tabelle `ingredient`
 --
 
-CREATE TABLE IF NOT EXISTS `incredient` (
-  `name` text NOT NULL,
-  `id` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `ingredreciperelation`
---
-
-CREATE TABLE IF NOT EXISTS `ingredreciperelation` (
-  `recipeid` int(11) NOT NULL,
-  `ingredientid` int(11) NOT NULL,
-  PRIMARY KEY (`recipeid`,`ingredientid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE IF NOT EXISTS `ingredient` (
+  `INGREDIENTID` int(11) NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(255) DEFAULT NULL,
+  `AMOUNT` float DEFAULT NULL,
+  `UNIT` varchar(255) DEFAULT NULL,
+  `RECIPEID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`INGREDIENTID`),
+  KEY `FK109C5DD1778CF33C` (`RECIPEID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -51,37 +43,46 @@ CREATE TABLE IF NOT EXISTS `ingredreciperelation` (
 --
 
 CREATE TABLE IF NOT EXISTS `recipe` (
-  `id` int(11) NOT NULL,
-  `header` text NOT NULL,
-  `description` text NOT NULL,
-  `image` text NOT NULL,
-  `complexity` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `RECIPEID` int(11) NOT NULL AUTO_INCREMENT,
+  `DESCRIPTION` varchar(255) DEFAULT NULL,
+  `PICTURE` varchar(255) DEFAULT NULL,
+  `DEGREE` int(11) DEFAULT NULL,
+  `DURATION` int(11) DEFAULT NULL,
+  `TITLE` varchar(255) DEFAULT NULL,
+  `AUTHOR` varchar(255) DEFAULT NULL,
+  `NOTE` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`RECIPEID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `recipetoolrelation`
+-- Tabellenstruktur für Tabelle `utensil`
 --
 
-CREATE TABLE IF NOT EXISTS `recipetoolrelation` (
-  `recipeid` int(11) NOT NULL,
-  `toolid` int(11) NOT NULL,
-  PRIMARY KEY (`recipeid`,`toolid`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `utensil` (
+  `UTENSILID` int(11) NOT NULL AUTO_INCREMENT,
+  `NAME` varchar(255) DEFAULT NULL,
+  `RECIPEID` int(11) DEFAULT NULL,
+  PRIMARY KEY (`UTENSILID`),
+  KEY `FK23B9CC2E778CF33C` (`RECIPEID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
--- Tabellenstruktur für Tabelle `tool`
+-- Constraints der exportierten Tabellen
 --
 
-CREATE TABLE IF NOT EXISTS `tool` (
-  `id` int(11) NOT NULL,
-  `name` text NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+--
+-- Constraints der Tabelle `ingredient`
+--
+ALTER TABLE `ingredient`
+  ADD CONSTRAINT `FK109C5DD1778CF33C` FOREIGN KEY (`RECIPEID`) REFERENCES `recipe` (`RECIPEID`);
+
+--
+-- Constraints der Tabelle `utensil`
+--
+ALTER TABLE `utensil`
+  ADD CONSTRAINT `FK_RECIPE_ID` FOREIGN KEY (`RECIPEID`) REFERENCES `recipe` (`RECIPEID`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

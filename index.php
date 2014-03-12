@@ -1,9 +1,3 @@
-<?php
-$user = $_POST['user'];
-$pass = $_POST['pass'];
-?>
-
-
 <html>
 <head>
 	<title>
@@ -13,13 +7,18 @@ $pass = $_POST['pass'];
 
 <body>
 <?php
-	echo 'You User name is: '.$user.' and your password asfadis: '.$pass.'';
+
+$username='root';
+$password='';
+$database='cookbook';
+$host="localhost";
+
+mysql_connect($host,$username,$password);
+@mysql_select_db($database) or die( mysql_error());
 ?>
-	<form action="index.php" method="POST">
-		User: <input type="text" name="user" />
-		Password: <input type="password" name="pass" />
-		<input type="submit" name="login!" />
-	</form>
+
+
+
 </body>
 
 </html>
