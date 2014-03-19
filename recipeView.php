@@ -1,8 +1,7 @@
 <?php
-	session_start();
 	require_once('Recipe.php');
+	session_start();
 	$test = $_SESSION["recipe"];
-	echo var_dump($_SESSION["recipe"]);
 	echo $test->toString();
 ?>
 
