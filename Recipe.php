@@ -42,15 +42,15 @@ class Recipe {
 		$this->prepTime = $pPrep;
 	}
 	
-	public function getTitle(){
+	public function getPreparationTime(){
 		return $this->prepTime;
 	}
 	
-	public function setTitle($pDifc){
+	public function setDifficulty($pDifc){
 		$this->difficulty = $pDifc;
 	}
 	
-	public function getTitle(){
+	public function getDifficulty(){
 		return $this->difficulty;
 	}
 }
