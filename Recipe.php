@@ -1,3 +1,4 @@
+<?php
 class Recipe {
 
 	private $title;
@@ -100,3 +101,4 @@ class Recipe {
 		return $this->recipeId;
 	}
 }
+?>

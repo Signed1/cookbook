@@ -1,4 +1,6 @@
 <?php
+	require_once('Recipe.php');
+
 	$desc = "";
 	$title = "";
 	$titleerr = "";
@@ -62,7 +64,8 @@
 		
 		
 		if($anyErr == false){
-			$_Session["recipe"] = new Recipe()->fillFromPostData($POST);
+			$_Session["recipe"] = new Recipe();
+			$_Session["recipe"]->fillFromPostData($_POST);
 			echo var_dump($_Session["recipe"]);
 		}
 	}
