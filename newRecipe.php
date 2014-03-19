@@ -64,9 +64,9 @@
 		
 		
 		if($anyErr == false){
-			$_Session["recipe"] = new Recipe();
-			$_Session["recipe"]->fillFromPostData($_POST);
-			echo var_dump($_Session["recipe"]);
+			$_SESSION["recipe"] = new Recipe();
+			$_SESSION["recipe"]->fillFromPostData($_POST);
+			header("Location:recipeView.php");
 		}
 	}
 ?>
