@@ -1,8 +1,7 @@
 <?php
 	require_once('Recipe.php');
 	session_start();
-	$test = $_SESSION["recipe"];
-	echo $test->toString();
+	$newRecipe = $_SESSION["recipe"];
 ?>
 
 <html>
@@ -15,7 +14,13 @@
 
 <body>
 
-<a href="newRecipe.php">Zur&uuml;ck</a>
+<?php
+	echo '<table><tr>' . Recipe::getHeader() . '<tr>';
+	echo $newRecipe->toString();
+	echo '</table>';
+?>
+
+<a href="newRecipe.php">Back</a>
 
 </body>
 

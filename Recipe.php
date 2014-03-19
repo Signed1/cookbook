@@ -31,6 +31,9 @@ class Recipe {
 		$this->duration = $pArray['recipeDuration'];
 	}
 		
+	public static function getHeader(){
+		return '<th>TITLE</th><th>DESCRIPTION</th><th>PICTURE</th><th>DEGREE</th><th>DURATION</th><th>AUTHOR</th><th>NOTE</th><th>RECIPEID</th>';
+	}
 	
 	public function toString(){
 		return '<tr>
