@@ -9,7 +9,8 @@
 	$dif = "";
 	$diferr = "";
 	
-	
+	session_start();
+		
 	if($_SERVER["REQUEST_METHOD"] == "POST"){
 		$anyErr = false;
 		
@@ -61,7 +62,8 @@
 		
 		
 		if($anyErr == false){
-			header("Location: ??.php?desc={$_POST[recipeDescription]&title={$_POST[recipeTitle]}");
+			$_Session["recipe"] = new Recipe()->fillFromPostData($POST);
+			echo var_dump($_Session["recipe"]);
 		}
 	}
 ?>

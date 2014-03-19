@@ -9,7 +9,10 @@ class Recipe {
 	private $note;
 	private $recipeId;
 	
-	public function __construct($pArray){
+	public function __construct(){
+	}
+	
+	public function fillFromDatabase($pArray){
 		$this->title = $pArray['TITLE'];
 		$this->description = $pArray['DESCRIPTION'];
 		$this->picture = $pArray['PICTURE'];
@@ -19,6 +22,14 @@ class Recipe {
 		$this->note = $pArray['NOTE'];
 		$this->recipeId = $pArray['RECIPEID'];
 	}
+	
+	public function fillFromPostData($pArray){
+		$this->title = $pArray['recipeTitle'];
+		$this->description = $pArray['recipeSteps'];
+		$this->degree = $pArray['recipeDifficulty'];
+		$this->duration = $pArray['recipeDuration'];
+	}
+		
 	
 	public function toString(){
 		return '<tr>
