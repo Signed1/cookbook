@@ -6,9 +6,9 @@
 	</title>
 
 <?php
-$amount = $_POST['amount'];
-$unit = $_POST['unit'];
-$name = $_POST['name'];
+$amount = $_GET['ingredientAmount'];
+$unit = $_GET['ingredientUnit'];
+$name = $_GET['ingredientName'];
 ?>
 </head>
 

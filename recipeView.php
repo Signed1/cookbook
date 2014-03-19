@@ -2,19 +2,19 @@
 
 <head>
 	<title>
-		New Utensil
+		New Recipe
 	</title>
 </head>
 
 <body>
 
 <?php
-	echo "Description: $_POST[recipeDescription] <br>";
-	echo "Steps: $_POST[recipeSteps] <br>";
-	echo "Ingredientes: $_POST[recipeIngredients] <br>";
-	echo "Est. Duration: $_POST[recipeDuration] <br>";
-	echo "Difficulty: $_POST[recipeDifficulty] <br>";
-	echo "Utilities: $_POST[recipeUtilities] <br>";
+	echo "Description: $_GET[recipeDescription] <br>";
+	echo "Steps: $_GET[recipeSteps] <br>";
+	echo "Ingredientes: $_GET[recipeIngredients] <br>";
+	echo "Est. Duration: $_GET[recipeDuration] <br>";
+	echo "Difficulty: $_GET[recipeDifficulty] <br>";
+	echo "Utilities: $_GET[recipeUtilities] <br>";
 ?>
 
 <a href="newRecipe.php">Zur&uuml;ck</a>

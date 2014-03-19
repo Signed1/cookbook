@@ -61,7 +61,7 @@
 		
 		
 		if($anyErr == false){
-			header("Location: ??.php?desc={$_POST[recipeDescription]}");
+			header("Location: ??.php?desc={$_POST[recipeDescription]&title={$_POST[recipeTitle]}");
 		}
 	}
 ?>
