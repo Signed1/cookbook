@@ -1,6 +1,7 @@
 <?php
 	require_once('Recipe.php');
-
+	$uploaddir = "images/";
+	
 	$desc = "";
 	$title = "";
 	$titleerr = "";
@@ -10,6 +11,8 @@
 	$descrerr = "";
 	$dif = "";
 	$diferr = "";
+	$imageerr = "";
+	$filename = "";
 	
 	session_start();
 		
@@ -26,7 +29,13 @@
 			$anyErr = true;
 			}
 			else{
-			$title= $_POST["recipeTitle"];
+				$title= $_POST["recipeTitle"];
+				$filename = $uploaddir . $title .'.'.explode(".",$_FILES['imagefile']['name'])[1];
+			
+				if (move_uploaded_file($_FILES['imagefile']['tmp_name'], $filename )){					
+				}else{
+					$imageerr = "Error uploading file";
+				}
 			}
 		}
 		
@@ -62,26 +71,24 @@
 			}
 		}
 		
-		
 		if($anyErr == false){
 			$_SESSION["recipe"] = new Recipe();
+			$_SESSION["recipe"]->setPicture($filename);
 			$_SESSION["recipe"]->fillFromPostData($_POST);
 			header("Location:recipeView.php");
 		}
 	}
 ?>
-<html>
-<head>
-	<title>
-		New Recipe
-	</title>
-</head>
-
-<body>
-	<form action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST">
+<?php include('theme/header.php');?>
+	<form action="<?php $_SERVER["PHP_SELF"]; ?>" method="POST" enctype="multipart/form-data">
 		<table>
 			<tr>
-				<td>Titel: </td>
+				<td><input type="hidden" name="MAX_FILE_SIZE" value="3000000000" /></td>
+				<td>Upload Image: <input name="imagefile" type="file"></td>
+				<td><span class="error"><?php echo $imageerr;?></span></td>
+			</tr>
+			<tr>
+				<td>Title: </td>
 				<td><input type="text" name="recipeTitle" value="<?php echo htmlspecialchars($title);?>"/></td>
 				<td><span class="error"><?php echo $titleerr;?></span></td>
 			</tr>
@@ -95,10 +102,6 @@
 				<td><textarea name="recipeSteps"></textarea></td>
 			</tr>
 			<tr>
-				<td>Ingredients:</td>
-				<td><textarea name="recipeIngredients"></textarea></td>
-			</tr>
-			<tr>
 				<td>Est. Duration:</td>
 				<td><input type="text" name="recipeDuration" value="<?php echo htmlspecialchars($durr);?>"/></td>
 				<td><span class="error"><?php echo $durerr;?></span></td>
@@ -107,10 +110,6 @@
 				<td>Difficulty:</td>
 				<td><input type="text" name="recipeDifficulty" value="<?php echo htmlspecialchars($dif);?>"/></td>
 				<td><span class="error"><?php echo $diferr;?></span></td>
-			</tr>
-			<tr>
-				<td>Needed Utilities </td>
-				<td><textarea name="recipeUtilities"></textarea></td>
 			</tr>
 			<tr>
 				<td></td>

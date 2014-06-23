@@ -1,4 +1,5 @@
 <?php
+
 class Recipe {
 
 	private $title;
@@ -30,22 +31,73 @@ class Recipe {
 		$this->degree = $pArray['recipeDifficulty'];
 		$this->duration = $pArray['recipeDuration'];
 	}
+	
+	public function save(){
+		require('db_connect.php');
+	
+		$insert = "INSERT INTO recipe (TITLE, DESCRIPTION, PICTURE, DEGREE, DURATION, AUTHOR, NOTE )
+					VALUES ('".$this->title."', '".$this->description."', '".$this->picture."', '".$this->degree."', '"
+					.$this->duration."', '".$this->author."', '".$this->note."')";
+		
+		return $mysqli->query($insert);
+	}
 		
 	public static function getHeader(){
-		return '<th>TITLE</th><th>DESCRIPTION</th><th>PICTURE</th><th>DEGREE</th><th>DURATION</th><th>AUTHOR</th><th>NOTE</th><th>RECIPEID</th>';
+		return '<th>Title</th><th>Steps</th><th>Difficulty</th><th>Duration</th><th>Author</th><th>Notes</th><th>Ingredients</th><th>Utensils</th>';
 	}
 	
 	public function toString(){
-		return '<tr>
-		<td>'.$this->title.'</td>
+		return '<tr style="height:100px">
+		<td><img width="100px" height="100px" src="'.$this->picture.'"/><br /><br />'.$this->title.'</td>
 		<td>'.$this->description.'</td>
-		<td>'.$this->picture.'</td>
 		<td>'.$this->degree.'</td>
-		<td>'.$this->duration.'</td>
+		<td>'.$this->duration.'min</td>
 		<td>'.$this->author.'</td>
 		<td>'.$this->note.'</td>
-		<td>'.$this->recipeId.'</td>
+		<td>'.$this->loadIngredients($this->recipeId).'</td>
+		<td>'.$this->loadUtensils($this->recipeId).'</td>
 		</tr>';
+	}
+
+	public function displaySelectedRecipe($recipeId){
+	
+
+
+
+
+	}
+	
+	public function loadUtensils($rId){
+	require('db_connect.php');
+
+	$query = "Select * from utensil where recipeid = '$rId'";
+	$utensil = $mysqli->query($query);
+	$retResult = "";
+		while($row = mysqli_fetch_array($utensil)){
+			$retResult .= $row['NAME'];
+			$retResult .= ' </br>';
+		}
+		return $retResult;
+	}
+
+	public function loadIngredients($rId){
+		require('db_connect.php');
+		$query = "select * from ingredient where recipeid ='$rId'";
+		$ingredient = $mysqli->query($query);
+		$result = "";
+
+			while($row = mysqli_fetch_array($ingredient)){
+				$result .= $row['NAME'];
+				$result .= " ";
+				$result .= $row['AMOUNT'];
+				$result .= $row['UNIT'];
+				$result .= '</br>';
+				//$result .= 
+
+
+			}
+			return $result;
+
 	}
 	
 	public function setTitle($pTitle){
@@ -103,5 +155,10 @@ class Recipe {
 	public function getRecipeId(){
 		return $this->recipeId;
 	}
+	
+	public function setPicture($pPicture){
+		$this->picture = $pPicture;
+	}
+
 }
 ?>

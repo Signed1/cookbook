@@ -12,7 +12,7 @@
 	echo "Utensilname: $_GET[utensilName]";
 ?>
 
-<a href="newUtensil.php">Zur&uuml;ck</a>
+<a href="NewUtensil.php">Zur&uuml;ck</a>
 
 </body>
 

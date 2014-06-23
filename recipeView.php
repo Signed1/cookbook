@@ -20,7 +20,8 @@
 	echo '</table>';
 ?>
 
-<a href="newRecipe.php">Back</a>
+<a href=<?=$_SERVER['HTTP_REFERER']?>>Back</a>
+<a href="saveData.php">OK</a>
 
 </body>
 
