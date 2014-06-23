@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.6
+-- version 4.0.6deb1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Erstellungszeit: 12. Mrz 2014 um 15:25
--- Server Version: 5.6.16
--- PHP-Version: 5.5.9
+-- Host: localhost
+-- Generation Time: Jun 23, 2014 at 08:34 AM
+-- Server version: 5.5.35-0ubuntu0.13.10.2
+-- PHP Version: 5.5.3-1ubuntu2.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,13 +17,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Datenbank: `cookbook`
+-- Database: `cookbook`
 --
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `ingredient`
+-- Table structure for table `ingredient`
 --
 
 CREATE TABLE IF NOT EXISTS `ingredient` (
@@ -34,12 +34,21 @@ CREATE TABLE IF NOT EXISTS `ingredient` (
   `RECIPEID` int(11) DEFAULT NULL,
   PRIMARY KEY (`INGREDIENTID`),
   KEY `FK109C5DD1778CF33C` (`RECIPEID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `ingredient`
+--
+
+INSERT INTO `ingredient` (`INGREDIENTID`, `NAME`, `AMOUNT`, `UNIT`, `RECIPEID`) VALUES
+(1, 'flour', 1.5, 'cups', 2),
+(2, 'water', 300, 'ml', 1),
+(3, 'water', 1, 'cup', 2);
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `recipe`
+-- Table structure for table `recipe`
 --
 
 CREATE TABLE IF NOT EXISTS `recipe` (
@@ -52,12 +61,21 @@ CREATE TABLE IF NOT EXISTS `recipe` (
   `AUTHOR` varchar(255) DEFAULT NULL,
   `NOTE` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`RECIPEID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `recipe`
+--
+
+INSERT INTO `recipe` (`RECIPEID`, `DESCRIPTION`, `PICTURE`, `DEGREE`, `DURATION`, `TITLE`, `AUTHOR`, `NOTE`) VALUES
+(1, '1, cook\r\n2, clean', 'images/userimage.jpg', 3, 1, 'Spaghetti ', '', ''),
+(2, '1. cook\r\n2. clean', 'images/Horse.png', 5, 45, 'Horse', '', ''),
+(3, '1. preheat oven\r\n2. put chicken in over', 'images/Roast.', 4, 120, 'Roast', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Tabellenstruktur für Tabelle `utensil`
+-- Table structure for table `utensil`
 --
 
 CREATE TABLE IF NOT EXISTS `utensil` (
@@ -66,20 +84,31 @@ CREATE TABLE IF NOT EXISTS `utensil` (
   `RECIPEID` int(11) DEFAULT NULL,
   PRIMARY KEY (`UTENSILID`),
   KEY `FK23B9CC2E778CF33C` (`RECIPEID`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
 
 --
--- Constraints der exportierten Tabellen
+-- Dumping data for table `utensil`
+--
+
+INSERT INTO `utensil` (`UTENSILID`, `NAME`, `RECIPEID`) VALUES
+(3, 'spoon', 1),
+(4, 'fork', 1),
+(5, 'glass', 2),
+(6, 'cup', 2),
+(17, 'food', 1);
+
+--
+-- Constraints for dumped tables
 --
 
 --
--- Constraints der Tabelle `ingredient`
+-- Constraints for table `ingredient`
 --
 ALTER TABLE `ingredient`
   ADD CONSTRAINT `FK109C5DD1778CF33C` FOREIGN KEY (`RECIPEID`) REFERENCES `recipe` (`RECIPEID`);
 
 --
--- Constraints der Tabelle `utensil`
+-- Constraints for table `utensil`
 --
 ALTER TABLE `utensil`
   ADD CONSTRAINT `FK_RECIPE_ID` FOREIGN KEY (`RECIPEID`) REFERENCES `recipe` (`RECIPEID`);
